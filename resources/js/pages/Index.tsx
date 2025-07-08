@@ -13,7 +13,7 @@ const Index = () => {
       id: 1,
       name: "Bowl Buddha Energético",
       description: "Quinoa, aguacate, espinacas, garbanzos y tahini",
-      price: 45000,
+      price: 45.00,
       image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop",
       category: "Bowls"
     },
@@ -21,7 +21,7 @@ const Index = () => {
       id: 2,
       name: "Hamburguesa de Lentejas",
       description: "Pan integral, hamburguesa de lentejas, verduras frescas",
-      price: 38000,
+      price: 38.00,
       image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop",
       category: "Hamburguesas"
     },
@@ -29,7 +29,7 @@ const Index = () => {
       id: 3,
       name: "Smoothie Verde Detox",
       description: "Espinacas, plátano, mango, jengibre y leche de coco",
-      price: 25000,
+      price: 25.00,
       image: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=400&h=300&fit=crop",
       category: "Bebidas"
     }
@@ -184,7 +184,7 @@ const Index = () => {
                       </Badge>
                     </div>
                     <span className="text-2xl font-bold text-green-600">
-                      ${product.price.toLocaleString()}
+                      S/.{product.price.toLocaleString()}
                     </span>
                   </div>
                 </CardHeader>
