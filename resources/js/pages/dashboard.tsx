@@ -2,6 +2,7 @@ import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
+import React, { use } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,16 +12,43 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Dashboard() {
+    const [people, setPeople] = React.useState([])
+
+    React.useEffect(() => {
+        // Simulate fetching data
+        const fetchData = async () => {
+            // const response = await fetch('https://swapi.info/api/people')
+            const response = await fetch('/api/products')
+            const data = await response.json();
+            setPeople(data);
+        };
+
+        fetchData();
+    }, [])
+
     return (
+        <div>
+
+        
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
                 <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                     <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+                        Hola qu ace
                     </div>
                     <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+                  {
+                    people.length > 0 ? (
+                        <ul className="list-disc pl-5">
+                            {people.map((person: any) => (
+                            <li key={person.name}>{person.name}</li>
+                            ))}
+                        </ul>
+                        ) : (
+                        <p>Loading...</p>
+                    )
+                  }
                     </div>
                     <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
                         <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
@@ -31,5 +59,6 @@ export default function Dashboard() {
                 </div>
             </div>
         </AppLayout>
+        </div>
     );
 }
